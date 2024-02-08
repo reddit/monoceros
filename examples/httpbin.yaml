@@ -1,0 +1,21 @@
+admin:
+  port: 9000
+supervisor:
+  workers:
+    - name: httpbin
+      replicas: 3
+      exec: ./dist/go-httpbin
+      signal_timeout: 15s
+      max_restarts: 3
+      server:
+        port_arg:
+          name: -port
+          value_template: '{{.Port}}'
+          start_port: 9090
+        signal_timeout: 20s
+        health_check_path: '/health'
+        load_balancer_algorithm: LEAST_REQUEST
+        admin_port: 8080
+        listener_port: 8081
+      limits:
+        lifespan: 4h
