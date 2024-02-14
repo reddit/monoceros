@@ -1,0 +1,14 @@
+admin:
+  placeholder: bar
+supervisor:
+  workers:
+    - name: processbin
+      replicas: 1
+      exec: ./dist/processbin
+      args:
+        - --exit-after
+        - 10
+      signal_timeout: 15s
+      max_restarts: 0
+      limits:
+        lifespan: 2s

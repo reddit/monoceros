@@ -1,0 +1,17 @@
+admin:
+  port: 9000
+supervisor:
+  workers:
+    - name: ping
+      replicas: 3
+      exec: ping
+      args:
+        - localhost
+        - -c
+        - 5
+      signal_timeout: 15s
+      max_restarts: 3
+      limits:
+        lifespan: 4h
+      startup_wait_time: 500ms
+      desired_healthy_percentage: 75

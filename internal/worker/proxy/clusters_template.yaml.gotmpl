@@ -1,0 +1,29 @@
+resources:
+  - '@type': type.googleapis.com/envoy.config.cluster.v3.Cluster
+    name: workers_cluster
+    type: STRICT_DNS
+    lb_policy: {{.LoadBalanceAlgorithm}}
+    typed_extension_protocol_options:
+      envoy.extensions.upstreams.http.v3.HttpProtocolOptions:
+        '@type': type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions
+        use_downstream_protocol_config: {}
+    health_checks:
+      - interval: 5s
+        timeout: 1s
+        unhealthy_threshold: 2
+        healthy_threshold: 1
+        event_log_path: /dev/stdout
+        always_log_health_check_failures: true
+        http_health_check:
+          path: '{{.HealthCheckPath}}'
+    load_assignment:
+      cluster_name: workers_cluster
+      endpoints:
+        - lb_endpoints:
+  	{{- range $port := .PortRange}}
+            - endpoint:
+                address:
+                  socket_address:
+                    address: 0.0.0.0
+                    port_value: {{$port}}
+  	{{- end}}

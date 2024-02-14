@@ -1,0 +1,15 @@
+node:
+  cluster: local_workers
+  id: monoceros-envoy
+
+admin:
+  address:
+    socket_address:
+      address: 127.0.0.1
+      port_value: 9901
+
+dynamic_resources:
+  cds_config:
+    path: envoy/clusters.yaml
+  lds_config:
+    path: envoy/listeners.yaml

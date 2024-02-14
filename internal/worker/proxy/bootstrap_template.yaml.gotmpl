@@ -1,0 +1,15 @@
+node:
+  cluster: local_workers
+  id: monoceros-envoy
+
+admin:
+  address:
+    socket_address:
+      address: 127.0.0.1
+      port_value: {{.Port}}
+
+dynamic_resources:
+  cds_config:
+    path: {{.CdsPath}}
+  lds_config:
+    path: {{.LdsPath}}
