@@ -4,12 +4,10 @@ package main
 import (
 	"context"
 	"fmt"
-	"math/rand"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
-	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/version"
@@ -97,7 +95,6 @@ func mainCore(config *config.MonocerosConfig, logger *zap.Logger) error {
 
 func main() {
 	prometheus.MustRegister(version.NewCollector(AppName))
-	rand.Seed(time.Now().UnixNano())
 
 	app := &cli.App{
 		Name:        AppName,
