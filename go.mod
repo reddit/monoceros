@@ -3,7 +3,7 @@ module github.com/reddit/monoceros
 go 1.19
 
 require (
-	github.com/go-cmd/cmd v1.4.1
+	github.com/go-cmd/cmd v1.4.2
 	github.com/stretchr/testify v1.8.0 // indirect
 	go.uber.org/zap v1.21.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -23,7 +23,6 @@ require (
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/go-test/deep v1.0.8 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
