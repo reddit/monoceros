@@ -1,5 +1,7 @@
 .PHONY: test build install lint clean fmt processbin
 
+CGO_ENABLED ?= 0
+
 BRANCH    ?= $(shell git rev-parse --abbrev-ref HEAD)
 BUILDDATE ?= $(shell date +"%Y-%m-%dT%H:%M:%S%z")
 REVISION  ?= $(shell git rev-parse HEAD)
@@ -18,19 +20,19 @@ test-ci: processbin
 	go test -race ./... -count=30
 
 test-unit: processbin
-	go test -short -timeout 15s ./...
+	CGO_ENABLED=$(CGO_ENABLED) go test -short -timeout 15s ./...
 
 processbin:
-	go build  -o dist/processbin ./cmd/processbin
+	CGO_ENABLED=$(CGO_ENABLED) go build  -o dist/processbin ./cmd/processbin
 
 build:
-	go build -ldflags "$(VERSION_LDFLAGS)" -o dist/monoceros ./cmd/monoceros
+	CGO_ENABLED=$(CGO_ENABLED) go build -ldflags "$(VERSION_LDFLAGS)" -o dist/monoceros ./cmd/monoceros
 
 build-race:
-	go build -race -ldflags "$(VERSION_LDFLAGS)" -o dist/monoceros-race ./cmd/monoceros
+	CGO_ENABLED=$(CGO_ENABLED) go build -race -ldflags "$(VERSION_LDFLAGS)" -o dist/monoceros-race ./cmd/monoceros
 
 install:
-	go install -ldflags "$(VERSION_LDFLAGS)" ./cmd/monoceros
+	CGO_ENABLED=$(CGO_ENABLED) go install -ldflags "$(VERSION_LDFLAGS)" ./cmd/monoceros
 
 lint:
 	go mod tidy
