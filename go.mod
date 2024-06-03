@@ -7,7 +7,7 @@ require (
 	github.com/google/go-cmp v0.6.0
 	github.com/prometheus/client_golang v1.19.1
 	github.com/prometheus/common v0.48.0
-	github.com/prometheus/procfs v0.15.0
+	github.com/prometheus/procfs v0.15.1
 	github.com/urfave/cli/v2 v2.27.2
 	go.uber.org/zap v1.27.0
 	gopkg.in/yaml.v3 v3.0.1
