@@ -10,6 +10,7 @@ import (
 	"syscall"
 
 	"github.com/prometheus/client_golang/prometheus"
+	versioncollector "github.com/prometheus/client_golang/prometheus/collectors/version"
 	"github.com/prometheus/common/version"
 	"github.com/reddit/monoceros/internal/admin"
 	"github.com/reddit/monoceros/internal/config"
@@ -94,7 +95,7 @@ func mainCore(config *config.MonocerosConfig, logger *zap.Logger) error {
 }
 
 func main() {
-	prometheus.MustRegister(version.NewCollector(AppName))
+	prometheus.MustRegister(versioncollector.NewCollector(AppName))
 
 	app := &cli.App{
 		Name:        AppName,
