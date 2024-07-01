@@ -3,7 +3,7 @@ module github.com/reddit/monoceros
 go 1.21
 
 require (
-	github.com/go-cmd/cmd v1.4.2
+	github.com/go-cmd/cmd v1.4.3
 	github.com/google/go-cmp v0.6.0
 	github.com/prometheus/client_golang v1.19.1
 	github.com/prometheus/common v0.54.0
