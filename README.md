@@ -4,8 +4,6 @@ Monoceros makes it easy to run, keep alive and terminate multiple copies of sing
 
 ![monoceros architecture graph illustrating a single controller managing the lifetime of multiple workers and a proxy load balancing requests.](assets/monoceros.drawio.png?raw=true "Monoceros Architecture")
 
-See [design doc](https://docs.google.com/document/d/1rXq4xosKG4KKvQXQL51l1i8IUTiudUBi7O0epB8z-ik/edit) for more details.
-
 ### Modes of operation
 
 1. **Monoceros in Supervisor Mode**: In this mode Monoceros will only keep your workers alive and observe them. Your workers should open a socket with `SO_REUSEPORT` option set and let the kernel load balance connections among the listening sockets.
